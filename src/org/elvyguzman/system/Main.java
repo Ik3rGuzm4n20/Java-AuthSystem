@@ -1,20 +1,26 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package org.elvyguzman.system;
 
-/**
- *
- * @author elvyr
- */
-public class Main {
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
+       
 
-    /**
-     * @param args the command line arguments
-     */
+public class Main extends Application{
+    
     public static void main(String[] args) {
-        // TODO code application logic here
+        launch(args);
+        
     }
     
+    @Override
+    public void start(Stage stage) throws Exception {
+        Label label = new Label("Mi primer proyecto JavaFX");
+        StackPane root = new StackPane(label);
+        Scene scene = new Scene(root, 400, 300);
+        stage.setScene(scene);
+        stage.setTitle("Fundamentos de programacion");
+        stage.show();
+    }
 }
