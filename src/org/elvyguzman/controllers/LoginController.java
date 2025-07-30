@@ -71,25 +71,43 @@ public class LoginController implements Initializable{
                     "No fue posible conectarse a la db, revisa configuraciones");
         }
         
-        String query = "call sp_buscar_usuario(?,?)";
+        String query = "call sp_validar_usuario(?,?)";
         try(PreparedStatement sp = conexion.prepareStatement(query)){
             sp.setString(1, txtEmail.getText());
             sp.setString(2, txtPassword.getText());
             ResultSet resultado = sp.executeQuery();
             
             if(resultado.next()){
-                usuario.setEmail(resultado.getString("email"));
-                mostrarAlerta(Alert.AlertType.INFORMATION,
-                        "Bienvenido!!!",
-                        "Inicio de sesión exitoso",
-                        "Todo esta bien bienvenido al programa");
+                String respuesta = resultado.getString("resultado");
+                
+                switch(respuesta){
+                    case "NO_EMAIL" -> mostrarAlerta(Alert.AlertType.ERROR,
+                        "Login",
+                        "Falló inicio de sesión",
+                        "No es un correo válido");
+                    case "CONTRASENIA_INCORRECTA" -> mostrarAlerta(Alert.AlertType.ERROR,
+                        "Login",
+                        "Falló inicio de sesión",
+                        "Contraseña ingresada es incorrecta");
+                    case "OK" -> {
+                        String email = resultado.getString("email");
+                        usuario.setEmail(email);
+                        mostrarAlerta(Alert.AlertType.INFORMATION,
+                                "Bienvenido!!!",
+                                "Inicio de sesión exitoso",
+                                "Todo esta bien bienvenido al programa " + usuario.getEmail());
+                    }
+                    default -> mostrarAlerta(Alert.AlertType.ERROR,
+                        "Login",
+                        "Falló inicio de sesión",
+                        "Respuesta inesperada del server");
+                }
             }else{
                 mostrarAlerta(Alert.AlertType.ERROR,
                         "Login",
-                        "Falló inicio de sesión",
+                        "Falló inicio de sesión",s
                         "Email o password inválido, intenta de nuevo");
-            }
-            
+            }    
         }catch(SQLException e){
             System.err.println("Error en la consulta SQL " + e.getMessage());
             mostrarAlerta(Alert.AlertType.ERROR,
