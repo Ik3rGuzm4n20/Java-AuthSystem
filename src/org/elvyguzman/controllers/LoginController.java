@@ -105,7 +105,7 @@ public class LoginController implements Initializable{
             }else{
                 mostrarAlerta(Alert.AlertType.ERROR,
                         "Login",
-                        "Falló inicio de sesión",s
+                        "Falló inicio de sesión",
                         "Email o password inválido, intenta de nuevo");
             }    
         }catch(SQLException e){
