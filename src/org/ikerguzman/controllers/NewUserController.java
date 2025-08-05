@@ -1,4 +1,4 @@
-package org.elvyguzman.controllers;
+package org.ikerguzman.controllers;
 
 import java.net.URL;
 import java.sql.PreparedStatement;
@@ -16,10 +16,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import org.elvyguzman.dao.Conexion;
-import org.elvyguzman.models.Persona;
-import org.elvyguzman.models.Usuario;
-import org.elvyguzman.system.Main;
+import org.ikerguzman.dao.Conexion;
+import org.ikerguzman.models.Persona;
+import org.ikerguzman.models.Usuario;
+import org.ikerguzman.system.Main;
 
 //1, agregar persona, buscar persona, agregar usuario
 

@@ -1,4 +1,4 @@
-package org.elvyguzman.models;
+package org.ikerguzman.models;
 
 public class Usuario {
     private String idUsuario; 

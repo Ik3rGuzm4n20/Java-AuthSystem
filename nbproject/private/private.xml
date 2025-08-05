@@ -3,14 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/elvyr/OneDrive/Documentos/A2025/CLASES%20DE%20PROGRA%20JAVA/Base%20de%20datos%20NORMALIZACION%20EJERCICOS/Auth/src/org/elvyguzman/controllers/LoginController.java</file>
-            <file>file:/C:/Users/elvyr/OneDrive/Documentos/A2025/CLASES%20DE%20PROGRA%20JAVA/Base%20de%20datos%20NORMALIZACION%20EJERCICOS/Auth/src/org/elvyguzman/controllers/NewUserController.java</file>
-            <file>file:/C:/Users/elvyr/OneDrive/Documentos/A2025/CLASES%20DE%20PROGRA%20JAVA/Base%20de%20datos%20NORMALIZACION%20EJERCICOS/Auth/src/org/elvyguzman/dao/Conexion.java</file>
-            <file>file:/C:/Users/elvyr/OneDrive/Documentos/A2025/CLASES%20DE%20PROGRA%20JAVA/Base%20de%20datos%20NORMALIZACION%20EJERCICOS/Auth/src/org/elvyguzman/models/Persona.java</file>
-            <file>file:/C:/Users/elvyr/OneDrive/Documentos/A2025/CLASES%20DE%20PROGRA%20JAVA/Base%20de%20datos%20NORMALIZACION%20EJERCICOS/Auth/src/org/elvyguzman/models/Usuario.java</file>
-            <file>file:/C:/Users/elvyr/OneDrive/Documentos/A2025/CLASES%20DE%20PROGRA%20JAVA/Base%20de%20datos%20NORMALIZACION%20EJERCICOS/Auth/src/org/elvyguzman/system/Main.java</file>
-            <file>file:/C:/Users/elvyr/OneDrive/Documentos/A2025/CLASES%20DE%20PROGRA%20JAVA/Base%20de%20datos%20NORMALIZACION%20EJERCICOS/Auth/src/org/elvyguzman/views/LoginView.fxml</file>
-            <file>file:/C:/Users/elvyr/OneDrive/Documentos/A2025/CLASES%20DE%20PROGRA%20JAVA/Base%20de%20datos%20NORMALIZACION%20EJERCICOS/Auth/src/org/elvyguzman/views/NewUserView.fxml</file>
+            <file>file:/C:/Users/iaguz/Documentos/NetBeansProjects/Fundamentos%20de%20JAVA/Auth/Java-AuthSystem1/src/org/ikerguzman/controllers/LoginController.java</file>
+            <file>file:/C:/Users/iaguz/Documentos/NetBeansProjects/Fundamentos%20de%20JAVA/Auth/Java-AuthSystem1/src/org/ikerguzman/controllers/NewUserController.java</file>
+            <file>file:/C:/Users/iaguz/Documentos/NetBeansProjects/Fundamentos%20de%20JAVA/Auth/Java-AuthSystem1/src/org/ikerguzman/dao/Conexion.java</file>
+            <file>file:/C:/Users/iaguz/Documentos/NetBeansProjects/Fundamentos%20de%20JAVA/Auth/Java-AuthSystem1/src/org/ikerguzman/system/Main.java</file>
+            <file>file:/C:/Users/iaguz/Documentos/NetBeansProjects/Fundamentos%20de%20JAVA/Auth/Java-AuthSystem1/src/org/ikerguzman/views/LoginView.fxml</file>
+            <file>file:/C:/Users/iaguz/Documentos/NetBeansProjects/Fundamentos%20de%20JAVA/Auth/Java-AuthSystem1/src/org/ikerguzman/views/NewUserView.fxml</file>
         </group>
     </open-files>
 </project-private>
