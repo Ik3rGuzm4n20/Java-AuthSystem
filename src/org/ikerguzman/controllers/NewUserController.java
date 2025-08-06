@@ -20,6 +20,7 @@ import org.ikerguzman.dao.Conexion;
 import org.ikerguzman.models.Persona;
 import org.ikerguzman.models.Usuario;
 import org.ikerguzman.system.Main;
+import org.ikerguzman.utils.AlertaUtil;
 
 //1, agregar persona, buscar persona, agregar usuario
 
@@ -109,26 +110,34 @@ public class NewUserController implements Initializable {
     
     @FXML
     public void eventoAceptar(ActionEvent event){
+        if(txtNombres.getText().isEmpty() ||
+                txtApellidos.getText().isEmpty() ||
+                txtEmail.getText().isEmpty() ||
+                txtPassword.getText().isEmpty())
+        {
+            Alert alertaCampos = new Alert(AlertType.WARNING);
+            alertaCampos.setTitle("Campos vacíos");
+            alertaCampos.setHeaderText("No hay datos");
+            alertaCampos.setContentText("Por favor llene todos los campos.");
+            alertaCampos.showAndWait();
+            return;
+        }
         agregarPersona();
         String id = idPersona();
         agregarUsuario(id);
-        Alert alerta = new Alert(AlertType.INFORMATION);
-        alerta.setTitle("Registro de usuarios");
-        alerta.setHeaderText("Éxito!!!");
-        alerta.setContentText("El registro se realizó de manera correcta");
-        alerta.showAndWait();
+        AlertaUtil.mostrarAlerta(AlertType.INFORMATION,
+        "Registro de usuarios",
+        "Éxito!!!",
+        "El registro se realizó de manera correcta");
         limpiarControles();
-        Alert alerta2 = new Alert(AlertType.WARNING, "¿Deseas iniciar sesión?",
-                        ButtonType.YES, ButtonType.NO);
-        Optional<ButtonType> seleccion = alerta2.showAndWait();
+        Optional<ButtonType> seleccion = AlertaUtil.mostrarConfirmacion("¿Deseas iniciar sesión?");
         if(seleccion.get() == ButtonType.YES){
           escenarioPrincipal.login();
         }else{
-            Alert alerta3 = new Alert(AlertType.INFORMATION);
-            alerta3.setTitle("Registro de usuarios");
-            alerta3.setHeaderText("Adiós");
-            alerta3.setContentText("Gracias por utilizar mi programa");
-            alerta3.showAndWait();
+            AlertaUtil.mostrarAlerta(Alert.AlertType.INFORMATION,
+            "Registro de usuarios",
+            "Adiós",
+            "Gracias por utilizar mi programa");
             Platform.exit();
         }
     }

@@ -21,6 +21,7 @@ import javafx.scene.input.MouseEvent;
 import org.ikerguzman.dao.Conexion;
 import org.ikerguzman.models.Usuario;
 import org.ikerguzman.system.Main;
+import org.ikerguzman.utils.AlertaUtil;
 
 public class LoginController implements Initializable{
     private Main escenarioPrincipal;
@@ -53,6 +54,13 @@ public class LoginController implements Initializable{
     
     @FXML
     public void eventoAceptar(ActionEvent evento){
+        if(txtEmail.getText().isEmpty() || txtPassword.getText().isEmpty()){
+            AlertaUtil.mostrarAlerta(Alert.AlertType.WARNING,
+                    "Campos vacíos",
+                    "Los datos estan incompletos",
+                    "Llenar todos los campos para continuar");
+            return;
+        }
         buscarUsuario();
         limpiarControles();
     }
@@ -65,7 +73,7 @@ public class LoginController implements Initializable{
     private void buscarUsuario(){
         Connection conexion = Conexion.getInstance().getConexion();
         if(conexion == null){
-            mostrarAlerta(Alert.AlertType.ERROR,
+            AlertaUtil.mostrarAlerta(Alert.AlertType.ERROR,
                     "Base de datos",
                     "Error de conexión",
                     "No fue posible conectarse a la db, revisa configuraciones");
@@ -81,36 +89,36 @@ public class LoginController implements Initializable{
                 String respuesta = resultado.getString("resultado");
                 
                 switch(respuesta){
-                    case "NO_EMAIL" -> mostrarAlerta(Alert.AlertType.ERROR,
+                    case "NO_EMAIL" -> AlertaUtil.mostrarAlerta(Alert.AlertType.ERROR,
                         "Login",
                         "Falló inicio de sesión",
                         "No es un correo válido");
-                    case "CONTRASENIA_INCORRECTA" -> mostrarAlerta(Alert.AlertType.ERROR,
+                    case "CONTRASENIA_INCORRECTA" -> AlertaUtil.mostrarAlerta(Alert.AlertType.ERROR,
                         "Login",
                         "Falló inicio de sesión",
                         "Contraseña ingresada es incorrecta");
                     case "OK" -> {
                         String email = resultado.getString("email");
                         usuario.setEmail(email);
-                        mostrarAlerta(Alert.AlertType.INFORMATION,
+                        AlertaUtil.mostrarAlerta(Alert.AlertType.INFORMATION,
                                 "Bienvenido!!!",
                                 "Inicio de sesión exitoso",
                                 "Todo esta bien bienvenido al programa " + usuario.getEmail());
                     }
-                    default -> mostrarAlerta(Alert.AlertType.ERROR,
+                    default -> AlertaUtil.mostrarAlerta(Alert.AlertType.ERROR,
                         "Login",
                         "Falló inicio de sesión",
                         "Respuesta inesperada del server");
                 }
             }else{
-                mostrarAlerta(Alert.AlertType.ERROR,
+                AlertaUtil.mostrarAlerta(Alert.AlertType.ERROR,
                         "Login",
                         "Falló inicio de sesión",
                         "Email o password inválido, intenta de nuevo");
             }    
         }catch(SQLException e){
             System.err.println("Error en la consulta SQL " + e.getMessage());
-            mostrarAlerta(Alert.AlertType.ERROR,
+            AlertaUtil.mostrarAlerta(Alert.AlertType.ERROR,
                     "Base de datos",
                     "Error en consulta SQL",
                     "No fue posible completar la consulta a la base de datos");
@@ -119,33 +127,22 @@ public class LoginController implements Initializable{
         
     @FXML
     public void eventoCancelar(ActionEvent evento){
-        Alert alerta = new Alert(Alert.AlertType.CONFIRMATION,
-                    "¿Seguro que quieres salir?",
-                    ButtonType.YES, ButtonType.NO);
-        Optional<ButtonType> eleccion = alerta.showAndWait();
-        if(eleccion.isPresent() && eleccion.get() == ButtonType.YES) Platform.exit();
+        Optional<ButtonType> eleccion = AlertaUtil.mostrarConfirmacion("¿Seguro que quieres salir?");
+        if(eleccion.isPresent() && eleccion.get() == ButtonType.YES){
+            Platform.exit();
+        }
     }
     
      @FXML
     public void eventoRegistrarse(MouseEvent evento){
         if(escenarioPrincipal != null){
             escenarioPrincipal.newUser();
-        }else{
-            mostrarAlerta(Alert.AlertType.ERROR, 
+        }
+        else{
+            AlertaUtil.mostrarAlerta(Alert.AlertType.ERROR,
                     "Nuevo Usuario",
                     "Error en formulario de registro",
                     "No fue posible mostrar el formulario de registro de usuarios");
-        }
-        
+        }    
     }
-    
-    private void mostrarAlerta(Alert.AlertType tipo,
-            String titulo, String encabezado, String mensaje){
-        Alert alerta = new Alert(tipo);
-        alerta.setTitle(titulo);
-        alerta.setHeaderText(encabezado);
-        alerta.setContentText(mensaje);
-        alerta.showAndWait();
-    }
-    
 }
